@@ -9,7 +9,7 @@ from typing_extensions import Annotated
 import holidays
 from datetime import datetime, timedelta
 
-OS_FLAG = False
+OS_FLAG = True
 
 oai_model_list = [
                 "gpt-3.5-turbo",
@@ -22,7 +22,7 @@ oai_model_list = [
                 ] 
 
 os_model_list = [   
-                    "ollama",
+    "openhermes25",
                     # "lmstudio",
                     # "mistral-instruct-8k",
                     # "neural-chat-8k",
@@ -121,22 +121,6 @@ def calculate_appointments(
     dates = [surgery_date + timedelta(days=i) for i in [1, 7, 30]]
     adjusted_dates = [adjust_date(date, country_holidays) for date in dates]
     return [date.strftime("%d-%m-%Y") for date in adjusted_dates]
-
-# # Define a function to calculate appointment dates
-# def calculate_appointments(
-#     surgery_date: Annotated[str, "Date of surgery"],
-#     country_holidays=holidays.BE()
-#     ) -> list:
-#     surgery_date = datetime.strptime(surgery_date, "%d-%m-%Y")
-#     dates = [surgery_date + timedelta(days=i) for i in [1, 7, 30]]
-#     adjusted_dates = [adjust_date(date, country_holidays) for date in dates]
-#     return [date.strftime("%d-%m-%Y") for date in adjusted_dates]
-    
-# user_proxy.register_function(
-#     function_map={
-#         "caculate_appointments": calculate_appointments
-#     }
-# )
 
 user_proxy.initiate_chat(
     scheduler,

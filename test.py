@@ -39,7 +39,6 @@ config_list_oai = config_list_from_json(
     }
 )
 
-
 # Configure the Agents
 llm_config_os = {
     "config_list": config_list_os,
